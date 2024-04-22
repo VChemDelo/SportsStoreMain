@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using SportsStore.Models;
 using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc;
 
 namespace SportsStore
 {
@@ -32,8 +33,12 @@ namespace SportsStore
         {
             app.UseDeveloperExceptionPage();
             app.UseStatusCodePages();
-            app.UseStaticFiles();   
-            app.UseMvc(routes => { routes.MapRoute(name: "default", template: "{controller=Product}/{action=List}/{id?}"); });
+            app.UseStaticFiles();
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(name: "pagination", template: "Products/Page{productPage}", defaults: new { Controller = "Product", action = "List" });
+                routes.MapRoute(name: "default", template: "{controller=Product}/{action=List}/{id?}");
+            });
             SeedData.EnsurePopulated(app);
         }
     }
