@@ -13,6 +13,6 @@ namespace SportsStore.Controllers
         {
             repository = repo;
         }
-        public ViewResult List(int productPage = 1) => View(new ProductsListViewModel {Products = repository.Products.OrderBy(p=>p.ProductID).Skip((productPage-1)*PageSize),PagingInfo = new PagingInfo { CorrentPage = productPage, ItemsPerPage = PageSize, TotalItems = repository.Products.Count() } });
+        public ViewResult List(string category, int productPage = 1) => View(new ProductsListViewModel {Products = repository.Products.Where(p => category == null || p.Category == category).OrderBy(p=>p.ProductID).Skip((productPage-1)*PageSize),PagingInfo = new PagingInfo { CorrentPage = productPage, ItemsPerPage = PageSize, TotalItems = repository.Products.Count() }, CurrentCategory = category });
     }
 }
