@@ -33,7 +33,14 @@ namespace SportsStore.Models
                         Name = "Soccer Ball",
                         Description = "Fifa-approved size and weight",
                         Category = "Soccer",
-                        Price = 19.50m
+                        Price = 20.50m
+                    },
+                    new Product
+                    {
+                        Name = "Socfsdfs Ball",
+                        Description = "Fifasdfsdfsdfproved size and weight",
+                        Category = "Soccer",
+                        Price = 20.50m
                     }
                     );
                 context.SaveChanges();
